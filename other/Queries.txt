@@ -1,0 +1,117 @@
+list itemtype
+
+List attributetype order
+
+List associationtype order
+
+List associate order.lines
+
+show
+
+show order
+
+get product[.stocklevel + 7 < 20]{.orderedOn.quantity, .code, .description, .stocklevel}
+
+get customer{.code, .name}
+
+get customer[.code = "JH001"]{.code, .name}
+
+get ProductGroup[.name = "Nails"]{.name}
+
+get product{.code, .description, .stocklevel, .price}
+
+get customer[exists(.orders)]{.code}
+
+get customer[count(.orders)]{.code}
+
+get customer[exists(orders)]{.code}
+
+get customer[count(.orders) > -1]{.code}
+
+get customer[count(.orders) > 0]{.code}
+
+get customer[count(.orders) > 1]{.code}
+
+get customer[count(.orders) > 2]{.code}
+
+get order[true]{.OrderNo}
+
+get order [6]{.OrderNo}
+
+get product[.code = "10003" or .code = "20009"]{.code, .description, .stocklevel}
+
+get product[.code = "10003" or .code = "20009"]{.code, .description, .stocklevel}
+
+get product[.stocklevel > 10]{.code, .description, .stocklevel}
+
+get product[add(.stocklevel,7) < 20]{.code, .description, .stocklevel}
+
+get product[.stocklevel + 7 < 20]{.code, .description, .stocklevel}
+
+get product[.stocklevel > 10 and .stocklevel < 20]{.code, .description, .stocklevel}
+
+get product[.code >= "20000"]{.code, .description, .stocklevel}
+
+get product[.price > 6.30]{.code, .description, .stocklevel, .price}
+
+get Order[.orderno = "002"].Lines{.Order.Customer.code, .Order.OrderNo, .Product.code, .quantity}
+
+get Order.Lines[.Order.OrderNo = "002"]{.Order.Customer.code, .Order.OrderNo, .Product.code, .quantity}
+
+get Order[.date > "13/5/2014"]{.Customer.code, .OrderNo, .date}
+
+get Order[.customer.code = "JH001"]{.Customer.code, .OrderNo}
+
+get Order[.customer.code = "HD001"]{.Customer.code, .OrderNo}
+
+get Order[.customer.code = "LH001"]{.Customer.code, .OrderNo}
+
+
+get Product[.stocklevel < sum(.OrderedOn.quantity)]{.code, .stocklevel}
+
+get Product[.stocklevel < sum(.OrderedOn.quantity)]{.code, .stocklevel, sum(.orderedon.quantity)}
+
+get Product[stocklevel.no < sum(.OrderedOn.quantity)]{.code, .stocklevel}
+
+get Product[no < sum(.OrderedOn.quantity)]{.code, .stocklevel}
+
+get Product[exists(.OrderedOn) and .stocklevel >= sum(.OrderedOn.quantity)]{.code, .stocklevel}
+
+get Product[exists(.OrderedOn) and .stocklevel >= sum(.OrderedOn.quantity)]{.code, .stocklevel, sum(.orderedon.quantity)}
+
+get orderline{.product.code, .quantity}
+
+get Order[.customer.code = "JH001"]{.Customer.code
+                                    , .OrderNo
+                                    , .Lines{.product.code as productCode
+                                             , .Quantity as quantity
+                                             , .product.price as price
+                                             , .product.price * .quantity as lineValue} as orderLines
+                                    , sum(.Lines(.product.price * .quantity)) as orderValue}
+
+get Product[exists(.OrderedOn)]{.code
+                                , .stocklevel
+                                , .orderedon{.quantity
+                                             , .product.price
+                                             , .quantity * .product.price as cost} as orderedOn
+                                , sum(.orderedon.quantity) as quantityOnOrder
+                                , sum(.orderedon(.quantity * .product.price)) as valueOnOrder}
+
+get Product[sum(.orderedon(.quantity * .product.price)) > 30]{.code
+                                                              , .stocklevel
+                                                              , .orderedon{.quantity
+                                                                           , .product.price
+                                                                           , .quantity * .product.price as cost} as orderedOn
+                                                              , sum(.orderedon.quantity) as quantityOnOrder
+                                                              , sum(.orderedon(.quantity * .product.price)) as valueOnOrder}
+
+var $orderValue = 10;
+get Product[sum(.orderedon(.quantity * .product.price)) > $orderValue]{.code
+                                                                       , .stocklevel
+                                                                       , .orderedon{.quantity
+                                                                                    , .product.price
+                                                                                    , .quantity * .product.price as cost} as orderedOn
+                                                                       , sum(.orderedon.quantity) as quantityOnOrder
+                                                                       , sum(.orderedon(.quantity * .product.price)) as valueOnOrder}
+                                                                       
+

@@ -1,0 +1,8 @@
+get OrderLine[.product.code = "10004"]{
+    .product{
+        .code,
+        .price
+    },
+    .quantity,
+    .quantity * .product.price as value
+}

@@ -1,0 +1,9 @@
+get product{.orderedon.order.orderno}
+
+get product{.orderedon{.order.orderno}}
+
+var $lines = get order[.orderno = "004"].lines[.product.code = "10004"]{.id};
+for $line in $lines
+    remove orderline[.id = $line("id")] from product[.code = "10004"].orderedon;
+    add orderline[.id = $line("id")] to product[.code = "10003"].orderedon;
+end;

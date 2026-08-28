@@ -1,0 +1,1 @@
+set order[.orderno = "004"].lines[.product.code = "10004"] (.quantity = .quantity + 2)

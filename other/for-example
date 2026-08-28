@@ -1,0 +1,32 @@
+var $orders = 
+[
+    {
+        "orderno" : "005",
+        "date" : "2014-05-13",
+        "CustomerReference" : "JH-123",
+        "CustomerCode" : "JH001",
+        "lines" : [
+            {"Quantity" : 2, "ProductCode" : "10002"},
+            {"Quantity" : 3, "ProductCode" : "20004"}
+     ]},
+    {
+        "orderno" : "006",
+        "date" : "2014-05-16",
+        "CustomerReference" : "HD/5/15",
+        "CustomerCode" : "HD001",
+        "lines" : [
+            {"Quantity" : 7, "ProductCode" : "10004"}       
+     ]}
+];
+for $order in $orders
+    Create Order(
+        orderno = $order("orderno"),
+        date = $order("date"),
+        CustomerReference = $order("CustomerReference"))
+    add to Customer[.code = $order("CustomerCode")].Orders;
+    for $line in $order("lines")
+        Create OrderLine (Quantity = $line("Quantity"))
+        add to Order[.orderno = $order("orderno")].Lines,
+            Product[.code = $line("ProductCode")].OrderedOn
+    end
+end

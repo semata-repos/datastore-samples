@@ -1,0 +1,3 @@
+add association type productgroup.contains to product.memberof
+
+add associate productgroup.memberof to productgroup.contains

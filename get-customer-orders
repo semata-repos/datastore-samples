@@ -1,0 +1,11 @@
+get Customer[.code = "JH001"].Orders {
+    .orderNo,
+    .date,
+    .customerReference,
+    .Lines {
+        .Product.code,
+        .quantity,
+        .quantity * .product.price as value
+    },
+    sum(.Lines(.quantity * .product.price))
+}

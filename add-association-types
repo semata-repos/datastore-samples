@@ -1,0 +1,3 @@
+add association type order.lines to orderline.order (1..1)
+
+add association type product.orderedon to orderline.product (1..1)

@@ -1,0 +1,15 @@
+get Product[sum(.orderedon(.quantity * .product.price)) > 30] {
+    .code,
+    .stocklevel,
+    .orderedon {
+        .order {
+            .customer {.code},
+            .orderNo
+        },
+        .quantity,
+        .product.price,
+        .quantity * .product.price as cost
+    } as orderedOn,
+    sum(.orderedon.quantity) as quantityOnOrder,
+    sum(.orderedon(.quantity * .product.price)) as valueOnOrder
+}

@@ -1,0 +1,5 @@
+Create Order(
+    orderno = "001",
+    date = "2014-05-13",
+    CustomerReference = "JH-123")
+Add To Customer[.code = "JH001"].Orders

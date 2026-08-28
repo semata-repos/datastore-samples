@@ -1,0 +1,1 @@
+get {"Hello Word", 42.70, count(Customer)}

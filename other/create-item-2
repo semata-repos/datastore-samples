@@ -1,0 +1,7 @@
+create customer(
+    code ="JH001",
+    name = "Jones Hardware",
+    addressline1 = "28 High Street",
+    posttown = "Bristol",
+    postcode = "BS54 2xz"
+)

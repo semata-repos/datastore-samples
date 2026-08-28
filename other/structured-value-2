@@ -1,0 +1,1 @@
+get Product[.code = "10002"]{.price, .stockLevel}

@@ -1,0 +1,24 @@
+add item type customer (
+    code mandatory unique string,
+    name mandatory string,
+    addressline1 string,
+    addressline2 string,
+    addressline3 string,
+    posttown string,
+    postcode string
+)
+
+add item type productgroup (
+    name mandatory unique string,
+    description string
+)
+
+add item type orderline (
+    quantity mandatory integer
+)
+
+add attribute type product.description mandatory string
+
+add attribute type product.price decimal
+
+add attribute type product.stocklevel integer

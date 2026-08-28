@@ -1,0 +1,10 @@
+Add Item Type Account
+
+Add Item Type AccountingPeriod
+
+Add Item Type AccountPeriod
+
+Add Association Type AccountingPeriod.AccountPeriods
+to AccountPeriod.AccountingPeriod
+
+Add Association Type Account.Periods to AccountPeriod.Account

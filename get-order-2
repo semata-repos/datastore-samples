@@ -1,0 +1,8 @@
+get Order[.orderno = "002"] {
+    .Customer.code,
+    .orderNo,
+    .Lines {
+        .Product.code,
+        .quantity
+    }
+}

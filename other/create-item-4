@@ -1,0 +1,5 @@
+create AccountPeriod
+from AccountingPeriod[.year = $year] as $period,
+     Account as $account
+add to $period.AccountPeriods,
+       $account.Periods

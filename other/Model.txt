@@ -1,0 +1,54 @@
+
+# Customer
+
+add itemtype customer (
+    code mandatory unique string,
+    name mandatory string,
+    addressline1 string,
+    addressline2 string,
+    addressline3 string,
+    posttown string,
+    postcode string
+)
+
+# ProductGroup
+
+add itemtype productgroup (
+    name mandatory unique string,
+    description string
+)
+
+# Product
+
+add itemtype product (
+    code mandatory unique string,
+    description mandatory string,
+    price decimal,
+    stocklevel integer
+)
+
+# Order
+
+add itemtype order (
+    date mandatory date,
+    orderno mandatory unique string,
+    customerreference string
+)
+
+# OrderLine
+
+add itemtype orderline
+
+add attributetype orderline.quantity mandatory integer
+
+# Associations
+
+add associationtype customer.orders to order.customer (1..1)
+
+add associationtype order.lines to orderline.order (1..1)
+
+add associationtype product.orderedon to orderline.product (1..1)
+
+add associationtype productgroup.contains to product.memberof
+
+add associate productgroup.memberof to productgroup.contains

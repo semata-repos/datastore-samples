@@ -1,0 +1,5 @@
+add item type order (
+    date mandatory date,
+    orderno mandatory unique string,
+    customerreference string
+)
